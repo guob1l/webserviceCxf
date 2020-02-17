@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace= "ws.dao.MerchantDao" >
+    <resultMap id ="Merchant" type="ws.bean.MerchantInfo">
+        <result column="id" property="id"/>
+        <result column="merchantNo" property="merchantNo"/>
+        <result column="custNo" property="custNo"/>
+        <result column="merchantName" property="merchantName"/>
+        <result column="merchantAccount" property="merchantAccount"/>
+        <result column="status" property="status"/>
+        <result column="address" property="address"/>
+        <result column="telephone" property="telephone"/>
+        <result column="createDateTime" property="createDateTime"/>
+        <result column="createPerson" property="createPerson"/>
+        <result column="updateDateTime" property="updateDateTime"/>
+        <result column="updatePerson" property="updatePerson"/>
+
+    </resultMap>
+
+
+    <insert id = "addMerchant" parameterType="ws.bean.MerchantInfo">
+            insert into merchant_info
+            <trim prefix="(" suffix=")" suffixOverrides=",">
+                <if test="merchantNo != null">
+                    merchantNo,
+                </if>
+                <if test="custNo != null">
+                    custNo,
+                </if>
+                <if test="merchantName != null">
+                    merchantName,
+                </if>
+                <if test="merchantAccount != null">
+                    merchantAccount,
+                </if>
+                <if test="status != null">
+                    status,
+                </if>
+                <if test="address != null">
+                    address,
+                </if>
+                <if test="telephone != null">
+                    telephone,
+                </if>
+                <if test="createPerson != null">
+                    createPerson,
+                </if>
+                    createDateTime,
+            </trim>
+
+            <trim prefix="values (" suffix=")" suffixOverrides=",">
+                <if test="merchantNo != null">
+                    #{merchantNo,jdbcType=VARCHAR},
+                </if>
+                <if test="custNo != null">
+                    #{custNo,jdbcType=VARCHAR},
+                </if>
+                <if test="merchantName != null">
+                    #{merchantName,jdbcType=VARCHAR},
+                </if>
+                <if test="merchantAccount != null">
+                    #{merchantAccount,jdbcType=VARCHAR},
+                </if>
+                <if test="status != null">
+                    #{status,jdbcType=VARCHAR},
+                </if>
+                <if test="address != null">
+                    #{address,jdbcType=VARCHAR},
+                </if>
+                <if test="telephone != null">
+                    #{telephone,jdbcType=VARCHAR},
+                </if>
+                <if test="createPerson != null">
+                    #{createPerson,jdbcType=VARCHAR},
+                </if>
+                    now()
+            </trim>
+    </insert>
+
+
+    <select id="findMerchant" resultMap="Merchant">
+        select id,
+               merchantNo,
+               custNo,
+               merchantName,
+               merchantAccount,
+               status,
+               address,
+               telephone,
+               createDateTime,
+               createPerson,
+               updateDateTime,
+               updatePerson
+        from merchant_info
+        <where>
+            <if test="merchant.id!=null and ''!=merchant.id">
+                and        id = #{merchant.id}
+            </if>
+            <if test="merchant.merchantNo!=null and ''!=merchant.merchantNo">
+                and        merchantNo = #{merchant.merchantNo}
+            </if>
+            <if test="merchant.custNo!=null and ''!=merchant.custNo">
+                and        custNo = #{merchant.custNo}
+            </if>
+            <if test="merchant.merchantName!=null and ''!=merchant.merchantName">
+                and        merchantName = #{merchant.merchantName}
+            </if>
+            <if test="merchant.merchantAccount!=null and ''!=merchant.merchantAccount">
+                and        merchantAccount = #{merchant.merchantAccount}
+            </if>
+            <if test="merchant.status!=null and ''!=merchant.status">
+                and        status = #{merchant.status}
+            </if>
+            <if test="merchant.address!=null and ''!=merchant.address">
+                and        address = #{merchant.address}
+            </if>
+            <if test="merchant.telephone!=null and ''!=merchant.telephone">
+                and        telephone = #{merchant.telephone}
+            </if>
+            <if test="merchant.createDateTime!=null and ''!=merchant.createDateTime">
+                and        createDateTime = #{merchant.createDateTime}
+            </if>
+            <if test="merchant.createPerson!=null and ''!=merchant.createPerson">
+                and        createPerson = #{merchant.createPerson}
+            </if>
+            <if test="merchant.updateDateTime!=null and ''!=merchant.updateDateTime">
+                and        updateDateTime = #{merchant.updateDateTime}
+            </if>
+            <if test="merchant.updatePerson!=null and ''!=merchant.updatePerson">
+                and        updatePerson = #{merchant.updatePerson}
+            </if>
+
+        </where>
+    </select>
+
+
+    <update id="updateMerchant" parameterType="ws.bean.MerchantInfo">
+                update merchant_info
+                    <set>
+                        <if test="merchantNo!=null">merchantNo=#{merchantNo},</if>
+                        <if test="custNo!=null">custNo=#{custNo},</if>
+                        <if test="merchantName!=null">merchantName=#{merchantName},</if>
+                        <if test="merchantAccount!=null">merchantAccount=#{merchantAccount},</if>
+                        <if test="status!=null">status=#{status},</if>
+                        <if test="address!=null">address=#{address},</if>
+                        <if test="telephone!=null">telephone=#{telephone},</if>
+                        <if test="updatePerson!=null">updatePerson=#{updatePerson},</if>
+                        updateDateTime=now()
+                    </set>
+                 where
+                    id = #{id}
+
+    </update>
+
+    <delete id="deleteMerchant" parameterType="ws.bean.MerchantInfo">
+
+            delete from merchant_info
+            where id = #{id}
+
+    </delete>
+
+</mapper>

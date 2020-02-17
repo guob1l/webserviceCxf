@@ -1,0 +1,13 @@
+spring:
+    #数据源
+  datasource:
+    url: jdbc:mysql://localhost:3306/merchant?characterEncoding=UTF-8&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+
+#mybatis配置
+mybatis:
+  typeAliasesPackage: ws.bean
+  mapperLocations: classpath:mapper/*.xml
+  #configLocation: classpath:/mybatis-config.xml

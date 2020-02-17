@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+
+<div>
+    <video autoplay playsinline  id="localVideo"></video>
+    <video id="remoteVideo" autoplay playsinline></video>
+</div>
+<div>
+    <button id="startButton">开始</button>
+    <button id="callButton">调用</button>
+    <button id="hangupButton">挂断</button>
+</div>
+
+<script src="../main.js">
+
+
+
+</script>
+<!--<script>
+    // 只获取视频
+    let constraints = {audio: false, video: true};
+    let startBtn = document.getElementById('start')
+    let stopBtn = document.getElementById('stop')
+    let video = document.getElementById('stream')
+    startBtn.onclick = function() {
+        navigator.getUserMedia(constraints, function(stream) {
+            video.srcObject = stream;
+            window.stream = stream;
+        }, function(err) {
+            console.log(err)
+        })
+    }
+    stopBtn.onclick = function() {
+        video.pause();
+    }
+</script>-->
+</body>
+</html>
+
