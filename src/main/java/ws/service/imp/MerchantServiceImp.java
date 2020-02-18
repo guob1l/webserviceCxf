@@ -19,9 +19,9 @@ public class MerchantServiceImp implements MerchantService {
         return merchantDao.addMerchant(merchantInfo);
     }
 
-    public List<MerchantInfo> findMerchant(MerchantInfo merchantInfo){
-
-        return merchantDao.findMerchant(merchantInfo);
+    public List<MerchantInfo> findMerchant(MerchantInfo merchantInfo, int page, int size){
+        int offs = size * (page-1);
+        return merchantDao.findMerchant(merchantInfo,size,offs);
     }
 
     @Override
@@ -32,5 +32,10 @@ public class MerchantServiceImp implements MerchantService {
     @Override
     public int deleteMerchant(MerchantInfo merchantInfo) {
         return  merchantDao.deleteMerchant(merchantInfo);
+    }
+
+    @Override
+    public int findTotalNumber() {
+        return  merchantDao.findTotalNumber();
     }
 }

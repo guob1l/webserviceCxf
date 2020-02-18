@@ -7,6 +7,7 @@ import ws.bean.MerchantInfo;
 import ws.service.MerchantService;
 
 import javax.jws.WebService;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -31,7 +32,24 @@ public class FindMerchantimp implements FindMerchant{
     private MerchantService merchantService;
 
     @Override
-    public List<MerchantInfo> find(MerchantInfo merchantInfo) {
-       return  merchantService.findMerchant(merchantInfo);
+    public List<MerchantInfo> find(MerchantInfo merchantInfo,int page,int size) {
+        //查询总条数：
+        int totalNumber = merchantService.findTotalNumber();
+        //按pagesize计算总页数
+        double totalDouble = (double)totalNumber/ (double)size;
+        int totalPage  = (int) Math.ceil(totalDouble);
+        if(totalPage<page){
+            return null;
+        }
+        ArrayList<MerchantInfo> merchantInfoArrayList = (ArrayList<MerchantInfo>) merchantService.findMerchant(merchantInfo,page,size);
+
+        if(merchantInfoArrayList.size()>0){
+            return merchantInfoArrayList;
+        }else{
+           /* MerchantInfo merchantInfo1 = new MerchantInfo();
+            merchantInfo1.setFlag("fail");
+            merchantInfoArrayList.add(merchantInfo1);*/
+            return  null;
+        }
     }
 }

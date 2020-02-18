@@ -130,8 +130,9 @@
             <if test="merchant.updatePerson!=null and ''!=merchant.updatePerson">
                 and        updatePerson = #{merchant.updatePerson}
             </if>
-
         </where>
+        order by id desc
+        limit #{size} offset #{offs}
     </select>
 
 
@@ -159,5 +160,10 @@
             where id = #{id}
 
     </delete>
+
+    <select id="findTotalNumber" resultType="Integer">
+        select count(1)
+        from merchant_info
+    </select>
 
 </mapper>

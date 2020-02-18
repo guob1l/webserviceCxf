@@ -104,9 +104,9 @@ public class WebserviceClient {
 
         try {
             Object merchantInfo =Thread.currentThread().getContextClassLoader().loadClass("wsfind.webservice.MerchantInfo").newInstance();
-            merchantInfo = setter(merchantInfo,"setMerchantNo","000000");
+            merchantInfo = setter(merchantInfo,"setMerchantNo","");
             //查找商户
-            objects = client.invoke("find", merchantInfo);
+            objects = client.invoke("find", merchantInfo,4,2);
             Object merchantResult = objects[0];
             for(Object o:(ArrayList)merchantResult){
                 String address = (String)getter(o,"getAddress");
@@ -193,8 +193,8 @@ public class WebserviceClient {
     }
 
     public static void main(String[] args) {
-        addMerchantClient();
-        //findMerchants();
+        //addMerchantClient();
+        findMerchants();
         //updateMerchant();
         //deleteMerchant();
     }

@@ -11,6 +11,6 @@ import java.util.List;
 @WebService(targetNamespace = "http://webservice.wsfind")
 public interface FindMerchant {
     @WebMethod
-    List<MerchantInfo> find(@WebParam(name = "merchant") MerchantInfo merchantInfo);
+    List<MerchantInfo> find(@WebParam(name = "merchant") MerchantInfo merchantInfo,int page,int size);
 
 }
